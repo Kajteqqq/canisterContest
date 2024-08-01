@@ -1,61 +1,69 @@
-# `canister_contest`
+Simple Calculator Application
+Overview:
+The Simple Calculator Application is a basic tool that lets you do quick math calculations. It is easy to use and perfect for anyone who needs to add, subtract, multiply, or divide numbers.
 
-Welcome to your new `canister_contest` project and to the Internet Computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+Key Features:
+Easy to Use:
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+The calculator has a simple design, making it easy for everyone to use.
+The buttons are big and clearly labeled, so you can quickly find what you need.
+Basic Math Functions:
 
-To learn more before you start working with `canister_contest`, see the following documentation available online:
+Addition (+): Add two numbers together.
+Subtraction (-): Subtract one number from another.
+Multiplication (*): Multiply two numbers.
+Division (/): Divide one number by another.
+Fast Results:
 
-- [Quick Start](https://internetcomputer.org/docs/current/developer-docs/setup/deploy-locally)
-- [SDK Developer Tools](https://internetcomputer.org/docs/current/developer-docs/setup/install)
-- [Rust Canister Development Guide](https://internetcomputer.org/docs/current/developer-docs/backend/rust/)
-- [ic-cdk](https://docs.rs/ic-cdk)
-- [ic-cdk-macros](https://docs.rs/ic-cdk-macros)
-- [Candid Introduction](https://internetcomputer.org/docs/current/developer-docs/backend/candid/)
+The calculator gives you the answer right away after you input the numbers and select the operation.
+Error Handling:
 
-If you want to start working on your project right away, you might want to try the following commands:
+The calculator is smart enough to prevent errors like dividing by zero, which isn’t allowed in math.
+If you try to do something that isn’t possible, the calculator will show a clear message.
+Works on Any Device:
 
-```bash
-cd canister_contest/
-dfx help
-dfx canister --help
-```
+You can use this calculator on your computer, phone, or tablet, so it’s always available when you need it.
+No Installation Needed:
 
-## Running the project locally
+Since it's a web-based application, you don't need to download or install anything. Just open it in your browser and start using it.
+Use Cases:
+Everyday Use: Great for adding up costs, figuring out discounts, or splitting a bill with friends.
+Learning Tool: Useful for students who need to practice basic math.
+Quick Calculations: Handy for simple math tasks in the office or at home.
+Future Improvements:
+More Functions: In the future, the calculator might include advanced features like square roots or percentages.
+Save Calculations: A feature that lets you see your previous calculations.
+Customizable Look: The ability to change the color or theme of the calculator.
 
-If you want to test your project locally, you can use the following commands:
+Polish:
+Łatwość Użytkowania:
 
-```bash
-# Starts the replica, running in the background
-dfx start --background
+Kalkulator ma prosty design, dzięki czemu każdy może z niego korzystać.
+Przyciskami są duże i wyraźnie oznaczone, więc łatwo znaleźć to, czego potrzebujesz.
+Podstawowe Funkcje Matematyczne:
 
-# Deploys your canisters to the replica and generates your candid interface
-dfx deploy
-```
+Dodawanie (+): Dodaj dwie liczby.
+Odejmowanie (-): Odejmij jedną liczbę od drugiej.
+Mnożenie (*): Pomnóż dwie liczby.
+Dzielenie (/): Podziel jedną liczbę przez drugą.
+Szybkie Wyniki:
 
-Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`.
+Kalkulator natychmiast pokazuje wynik po wprowadzeniu liczb i wybraniu operacji.
+Obsługa Błędów:
 
-If you have made changes to your backend canister, you can generate a new candid interface with
+Kalkulator jest wystarczająco inteligentny, aby zapobiegać błędom, takim jak dzielenie przez zero, co jest niedozwolone w matematyce.
+Jeśli spróbujesz wykonać niepoprawną operację, kalkulator wyświetli jasny komunikat.
+Działa na Każdym Urządzeniu:
 
-```bash
-npm run generate
-```
+Możesz używać tego kalkulatora na komputerze, telefonie lub tablecie, więc jest zawsze dostępny, gdy go potrzebujesz.
+Bez Instalacji:
 
-at any time. This is recommended before starting the frontend development server, and will be run automatically any time you run `dfx deploy`.
-
-If you are making frontend changes, you can start a development server with
-
-```bash
-npm start
-```
-
-Which will start a server at `http://localhost:8080`, proxying API requests to the replica at port 4943.
-
-### Note on frontend environment variables
-
-If you are hosting frontend code somewhere without using DFX, you may need to make one of the following adjustments to ensure your project does not fetch the root key in production:
-
-- set`DFX_NETWORK` to `ic` if you are using Webpack
-- use your own preferred method to replace `process.env.DFX_NETWORK` in the autogenerated declarations
-  - Setting `canisters -> {asset_canister_id} -> declarations -> env_override to a string` in `dfx.json` will replace `process.env.DFX_NETWORK` with the string in the autogenerated declarations
-- Write your own `createActor` constructor
+Ponieważ jest to aplikacja internetowa, nie musisz niczego pobierać ani instalować. Wystarczy otworzyć ją w przeglądarce i zacząć korzystać.
+Zastosowania:
+Codzienne Użycie: Świetnie nadaje się do sumowania kosztów, obliczania rabatów czy dzielenia rachunku ze znajomymi.
+Narzędzie do Nauki: Przydatne dla uczniów, którzy potrzebują poćwiczyć podstawowe obliczenia.
+Szybkie Obliczenia: Wygodne do prostych obliczeń w biurze lub w domu.
+Przyszłe Udoskonalenia:
+Więcej Funkcji: W przyszłości kalkulator może zawierać zaawansowane funkcje, takie jak pierwiastki kwadratowe czy procenty.
+Zapisywanie Obliczeń: Funkcja, która pozwala na przeglądanie poprzednich obliczeń.
+Dostosowywany Wygląd: Możliwość zmiany koloru lub motywu kalkulatora.

@@ -1,3 +1,6 @@
 service : {
-    "greet": (text) -> (text) query;
+    "dodaj_liczby": (int32, int32) -> (int32) query;
+    "odejmij_liczby": (int32, int32) -> (int32) query;
+    "pomnoz_liczby": (int32, int32) -> (int32) query;
+    "podziel_liczby": (int32, int32) -> (int32) query;
 }
