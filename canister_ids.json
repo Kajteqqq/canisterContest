@@ -1,0 +1,8 @@
+{
+  "canister_contest_backend": {
+    "ic": "4d5zh-qyaaa-aaaap-ahqvq-cai"
+  },
+  "canister_contest_frontend": {
+    "ic": "4w2ik-rqaaa-aaaap-ahqwa-cai"
+  }
+}

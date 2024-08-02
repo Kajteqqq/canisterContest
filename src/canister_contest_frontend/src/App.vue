@@ -2,12 +2,18 @@
 import { ref } from 'vue';
 import { canister_contest_backend } from 'declarations/canister_contest_backend/index';
 
-// Definiujemy zmienne i ich referencje
-const wyswietlacz = ref("0");  // Używamy ref dla reaktywności w Vue
-const liczba1 = ref("");   // Używamy ref dla reaktywności
-const liczba2 = ref("");   // Używamy ref dla reaktywności
-const op = ref("");  // Operator
-const counter = ref(0);   // Używamy ref dla reaktywności
+// Common Reactive State
+const wyswietlacz = ref("0");  
+const liczba1 = ref("");   
+const liczba2 = ref("");   
+const op = ref("");  
+const counter = ref(0);  
+
+// Delta Calculator Specific State
+const wyswietlaczDelta = ref("0");  
+const deltaA = ref("");  
+const deltaB = ref("");  
+const deltaC = ref("");  
 
 function dodajCyfre(cyfra) {
     if (counter.value === 0) {
@@ -22,10 +28,10 @@ function dodajCyfre(cyfra) {
 function ustawOperator(operator) {
     if (counter.value === 0 && liczba1.value !== "") {
         op.value = operator;
-        wyswietlacz.value = liczba1.value + " " + op.value;  // Aktualizujemy wyświetlacz z operatorem
-        counter.value = 1;  // Ustawiamy licznik na 1, aby wskazać, że operator jest ustawiony
+        wyswietlacz.value = liczba1.value + " " + op.value;
+        counter.value = 1;
     } else if (counter.value === 1 && liczba2.value !== "") {
-        oblicz();  // Obliczamy, jeśli operator już jest ustawiony i mamy dwie liczby
+        oblicz();
         op.value = operator;
         wyswietlacz.value = liczba1.value + " " + op.value;
     } else {
@@ -41,7 +47,6 @@ function zresetuj() {
     wyswietlacz.value = "0";
 }
 
-// Używamy BigInt dla dużych liczb, aby pasowały do nat32 w IC
 async function dodaj(liczba1, liczba2) {
     const num1 = Math.round(parseFloat(liczba1));
     const num2 = Math.round(parseFloat(liczba2));
@@ -63,6 +68,10 @@ async function pomnoz(liczba1, liczba2) {
 async function podziel(liczba1, liczba2) {
     const num1 = Math.round(parseFloat(liczba1));
     const num2 = Math.round(parseFloat(liczba2));
+    if (num2 === 0) {
+        console.error("Nie można dzielić przez zero");
+        return "Error";
+    }
     return await canister_contest_backend.podziel_liczby(num1, num2);
 }
 
@@ -87,23 +96,46 @@ async function oblicz() {
                 return;
         }
         wyswietlacz.value = wynik.toString();
-        liczba1.value = wynik.toString();  // Ustawiamy wynik jako pierwszą liczbę dla dalszych obliczeń
-        liczba2.value = "";   // Resetujemy drugą liczbę
-        op.value = "";        // Resetujemy operator
-        counter.value = 0;    // Resetujemy licznik
+        liczba1.value = wynik.toString();
+        liczba2.value = "";
+        op.value = "";
+        counter.value = 0;
+    }
+}
+
+function dodajCyfreDelta(cyfra) {
+    if (deltaA.value === "") {
+        deltaA.value = cyfra;
+    } else if (deltaB.value === "") {
+        deltaB.value = cyfra;
+    } else if (deltaC.value === "") {
+        deltaC.value = cyfra;
+    }
+}
+
+async function obliczDelte() {
+    if (deltaA.value && deltaB.value && deltaC.value) {
+        const wynik = await canister_contest_backend.oblicz_delte(
+            parseInt(deltaA.value, 10),
+            parseInt(deltaB.value, 10),
+            parseInt(deltaC.value, 10)
+        );
+        wyswietlaczDelta.value = wynik.toString();
     }
 }
 </script>
 
+
 <template>
-<center>
-  <h1>Prosty kalkulator</h1>
-</center>
-<div id="app" class="calculator">
-    <div class="display">
+    <center id="help">
+      <h1>Prosty kalkulator</h1>
+    </center>
+  
+    <div class="calculator">
+      <div class="display">
         {{ wyswietlacz }}
-    </div>
-    <div class="buttons">
+      </div>
+      <div class="buttons">
         <button @click="dodajCyfre('7')" class="button">7</button>
         <button @click="dodajCyfre('8')" class="button">8</button>
         <button @click="dodajCyfre('9')" class="button">9</button>
@@ -120,6 +152,35 @@ async function oblicz() {
         <button @click="oblicz()" class="button equal">=</button> 
         <button @click="zresetuj()" class="button clear">C</button>
         <button @click="ustawOperator('+')" class="button operator">+</button>
+      </div>
     </div>
-</div>
-</template>
+    
+    <center>
+      <h1>Kalkulator Delty</h1>
+    </center>
+    
+    <div id="deltaCalculator" class="calculator">
+      <div class="display">
+        {{ wyswietlaczDelta }}
+      </div>
+      <div class="deltaNumbers">
+        <input class="deltaNumber" type="text" v-model="deltaA" readonly>
+        <input class="deltaNumber" type="text" v-model="deltaB" readonly>
+        <input class="deltaNumber" type="text" v-model="deltaC" readonly>
+      </div>
+      <div class="deltaButtons">
+        <button @click="dodajCyfreDelta('7')" class="button">7</button>
+        <button @click="dodajCyfreDelta('8')" class="button">8</button>
+        <button @click="dodajCyfreDelta('9')" class="button">9</button>
+        <button @click="dodajCyfreDelta('4')" class="button">4</button>
+        <button @click="dodajCyfreDelta('5')" class="button">5</button>
+        <button @click="dodajCyfreDelta('6')" class="button">6</button>
+        <button @click="dodajCyfreDelta('1')" class="button">1</button>
+        <button @click="dodajCyfreDelta('2')" class="button">2</button>
+        <button @click="dodajCyfreDelta('3')" class="button">3</button>
+        <button @click="dodajCyfreDelta('0')" class="button">0</button>
+        <button @click="obliczDelte()" class="button equal">=</button> 
+      </div>
+    </div>
+  </template>
+  

@@ -23,3 +23,8 @@ fn podziel_liczby(liczba1: i32, liczba2: i32) -> i32 {
     let wynik = liczba1 / liczba2;
     return wynik;
 }
+#[ic_cdk::query]
+fn oblicz_delte(liczba_a: i32, liczba_b: i32, liczba_c: i32) -> i32 {
+    let wynik = (liczba_b * liczba_b) - 4 * liczba_a * liczba_c;
+    return wynik;
+}
