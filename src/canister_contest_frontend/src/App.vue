@@ -123,6 +123,12 @@ async function obliczDelte() {
         wyswietlaczDelta.value = wynik.toString();
     }
 }
+function czyscDelta(){
+    deltaA.value = "";
+    deltaB.value = "";
+    deltaC.value = "";
+    wyswietlaczDelta.value = "0";
+}
 </script>
 
 
@@ -180,6 +186,7 @@ async function obliczDelte() {
         <button @click="dodajCyfreDelta('3')" class="button">3</button>
         <button @click="dodajCyfreDelta('0')" class="button">0</button>
         <button @click="obliczDelte()" class="button equal">=</button> 
+        <button @click="czyscDelta()" class="button">C</button> 
       </div>
     </div>
   </template>
