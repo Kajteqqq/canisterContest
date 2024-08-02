@@ -28,3 +28,18 @@ fn oblicz_delte(liczba_a: i32, liczba_b: i32, liczba_c: i32) -> i32 {
     let wynik = (liczba_b * liczba_b) - 4 * liczba_a * liczba_c;
     return wynik;
 }
+#[ic_cdk::query]
+fn oblicz_pierwiastek_kwadratowy(liczba: f64) -> f64{
+    if liczba >= 0.0{
+        let wynik = liczba.sqrt();
+        return wynik;
+    }
+    else{
+        panic!("PIERWIASTKOWANA LICZBA MUSI BYC WIEKSZA OD ZERA");
+    }
+}
+#[ic_cdk::query]
+fn oblicz_pierwiastek_szescienny(liczba: f64) -> f64{
+    let wynik = liczba.cbrt();
+    return wynik;
+}

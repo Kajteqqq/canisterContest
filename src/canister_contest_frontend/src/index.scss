@@ -5,22 +5,25 @@ body {
   height: 100vh;
   background-color: #f0f0f0;
   font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.calculator-container {
+  display: flex;
+  gap: 20px; /* Adjust the gap between calculators as needed */
+  justify-content: center;
 }
 
 .calculator {
-  position: relative;
   display: grid;
   grid-template-rows: 1fr 4fr;
-  width: 400px;
-  height: 600px;
+  width: 300px; /* Adjust width as needed */
+  height: 400px; /* Adjust height as needed */
   background-color: #333;
   border-radius: 10px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-#help{
-  margin-top: 600px;
-}
 .display {
   display: flex;
   justify-content: flex-end;
@@ -28,23 +31,28 @@ body {
   padding: 20px;
   background-color: #444;
   color: white;
-  font-size: 3em;
+  font-size: 2em; /* Adjust font size as needed */
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
-.buttons {
+.buttons, .deltaButtons, .rootButtons {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* Adjust column count if needed */
   gap: 10px;
-  padding: 20px;
+  padding: 10px;
 }
 
-.button {
+.rootButtons{
+  gap: 20px !important; 
+  margin-left: 30px;
+}
+
+.button, .deltaNumber {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2em;
+  font-size: 1.5em; /* Adjust font size as needed */
   background-color: #555;
   color: white;
   border: none;
@@ -52,8 +60,21 @@ body {
   cursor: pointer;
   transition: background-color 0.2s;
 }
+.deltaNumbers{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 35px;
+}
+.deltaNumber{
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
 
-.button:hover {
+.button:hover, .deltaNumber:hover {
   background-color: #666;
 }
 
@@ -65,50 +86,15 @@ body {
   background-color: #e67e22;
 }
 
-//delta
-#deltaCalculator{
-  position: relative;
-  top: 20px;
-  width: 400px;
-  height: 600px;
-}
-.deltaInputs{
-  width: 45px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2em;
-  background-color: #555;
-  color: white;
-  border: none;
+.input-number {
+  width: 90%;
+  font-size: 1.5em;
+  padding: 10px;
   border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s;
+  border: 1px solid #ddd;
   text-align: center;
+  margin-left: 5px;
 }
-.deltaNumbers{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: auto;
-  position: relative;
-  height: 50px;
-}
-.deltaNumber{
-  background-color: #555;
-  outline: none;
-  width: 60px;
-  height: 40px;
-  text-align: center;
+.titles{
   color: white;
-  font-size: 2em;
-}
-.deltaButtons{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  padding: 20px;
 }
