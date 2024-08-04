@@ -2,14 +2,12 @@
 import { ref } from 'vue';
 import { canister_contest_backend } from 'declarations/canister_contest_backend/index';
 
-// Common Reactive State
 const wyswietlacz = ref("0");
 const liczba1 = ref("");
 const liczba2 = ref("");
 const op = ref("");
 const counter = ref(0);
 
-// Delta Calculator Specific State
 const wyswietlaczDelta = ref("0");
 const deltaA = ref("");
 const deltaB = ref("");
